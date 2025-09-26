@@ -33,8 +33,10 @@ function CrearGasto(descripcion,valor){
 function listarGastos(){
     return gastos;
 }
-function anyadirGasto(){
-
+function anyadirGasto(id){
+    this.idGasto = id;
+    this.idGasto++;
+    this.gastos.push(id);
 }
 function borrarGasto(){
 
