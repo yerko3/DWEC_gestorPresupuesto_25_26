@@ -20,9 +20,8 @@ function mostrarPresupuesto() {
 function CrearGasto(descripcion,valor,fecha, ...etiquetas){
     this.descripcion = descripcion;
     this.valor = (valor > 0) ? valor : 0;
-    this.etiquetas = (etiquetas.length < 0) ? [] : etiquetas;
+    this.etiquetas = (etiquetas.length === 0) ? [] : etiquetas;
     this.fecha = isValidDate(fecha)? Date.parse(fecha) : new Date();
-
 
 
     this.mostrarGasto = function(){
@@ -52,15 +51,19 @@ function borrarGasto(id){
         if(gastos[i].id === id)
         {
             gastos.splice(i, 1);
-            idGasto--;
+            break;
         }
     }
 }
 function calcularTotalGastos(){
-
+    let count = 0;
+    for(let i = 0; i < gastos.length; i++){
+        count += gastos[i].valor;
+    }
+    return count;
 }
 function calcularBalance(){
-
+    return presupuesto - calcularTotalGastos();
 }
 function anyadirGasto(gasto){
     gasto.id = idGasto;
