@@ -37,6 +37,24 @@ function CrearGasto(descripcion,valor,fecha, ...etiquetas){
         }
         return str;
     }
+    this.actualizarFecha = function(fecha){
+        if(isValidDate(fecha))
+            this.fecha = Date.parse(fecha);
+    }
+    this.anyadirEtiquetas = function(...etiquetas) {
+        this.etiquetas.push(...etiquetas);
+        this.etiquetas = [...new Set(this.etiquetas)];
+    }
+    this.borrarEtiquetas = function(...etiquetas){
+        for(let i = this.etiquetas.length; i >= 0; i--){
+            for(let j = 0; j < etiquetas.length; j++){
+                if(this.etiquetas[i] === etiquetas[j])
+                {
+                    this.etiquetas.splice(i,1);
+                }
+            }
+        }
+    }
     this.actualizarDescripcion = function(value){
         this.descripcion = value;
     }
