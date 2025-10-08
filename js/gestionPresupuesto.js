@@ -29,7 +29,7 @@ function CrearGasto(descripcion,valor,fecha, ...etiquetas){
     }
     
     this.mostrarGastoCompleto = function(){
-        let str =`Gasto correspondiente a ${descripcion} con valor ${valor} €.`+"\n"; 
+        let str =`Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €.`+"\n"; 
         str += `Fecha: ${new Date(this.fecha).toLocaleString()}\n`;
         str += `Etiquetas:`+"\n";
         for(let i = 0; i < etiquetas.length; i++){
