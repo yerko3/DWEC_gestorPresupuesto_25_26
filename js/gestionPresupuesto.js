@@ -143,7 +143,7 @@ function filtrarGastos(value = {}){
             return false;
         }
         if(valorMinimo && valorMinimo > gasto.valor){
-            return false
+            return false    
         }
         if(valorMaximo && valorMaximo < gasto.valor){
             return false;
@@ -157,7 +157,17 @@ function filtrarGastos(value = {}){
     });
     
 }
-function agruparGastos(){
+function agruparGastos(periodo = "mes",etiquetas,fechaDesde,fechaHasta){
+
+    let etiquetasG = etiquetas.length === 0 ? [] : etiquetas;
+    let fechaDesdeG = isValidDate(fechaDesde) ? Date.parse(fechaDesde) : null;
+    let fechaHastaG = isValidDate(fechaHasta) ? Date.parse(fechaHasta) : null;
+
+    filtrarGastos()
+
+
+
+
 
 }
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.
