@@ -108,9 +108,54 @@ function anyadirGasto(gasto){
     idGasto++;
     gastos.push(gasto);
 }
+function filtrarGastos(value = {}){
 
-function filtrarGastos(){
+    if(value === undefined || value === null)
+        return gastos;
 
+    if(Object.keys(value).length === 0)
+        return gastos;
+
+    const {
+        fechaDesde,
+        fechaHasta,
+        valorMinimo,
+        valorMaximo,
+        descripcionContiene,
+        etiquetasTiene
+    } = value;
+
+    return gastos.filter(gasto => {
+
+        let fechaDesde = isValidDate(value.fechaDesde) ? Date.parse(value.fechaDesde) : null;
+        let fechaHasta = isValidDate(value.fechaHasta) ? Date.parse(value.fechaHasta) : null;
+        let valorMinimo = Number.isInteger(value.valorMinimo) ? value.valorMinimo : null;
+        let valorMaximo = Number.isInteger(value.valorMaximo) ? value.valorMaximo : null;
+        let descripcionContiene = value.descripcionContiene;
+        let etiquetasGasto = (gasto.etiquetas.length === 0) ? [] : gasto.etiquetas.map(v => v.toUpperCase());
+        let etiquetasFiltro = (Array.isArray(value.etiquetasTiene) ? value.etiquetasTiene.map(v => v.toUpperCase()) : null);
+
+
+        if(fechaDesde && fechaDesde > gasto.fecha){
+            return false;
+        }
+        if(fechaHasta && fechaHasta < gasto.fecha){
+            return false;
+        }
+        if(valorMinimo && valorMinimo > gasto.valor){
+            return false
+        }
+        if(valorMaximo && valorMaximo < gasto.valor){
+            return false;
+        }
+        if (descripcionContiene && !gasto.descripcion.toUpperCase().includes(descripcionContiene.toUpperCase())) {
+            return false;
+        }
+        if (etiquetasFiltro && (!etiquetasGasto.some(v => etiquetasFiltro.includes(v))))
+            return false;
+        return true;
+    });
+    
 }
 function agruparGastos(){
 
