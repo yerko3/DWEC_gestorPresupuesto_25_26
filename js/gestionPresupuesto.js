@@ -158,16 +158,14 @@ function filtrarGastos(value = {}){
     
 }
 function agruparGastos(periodo = "mes",etiquetas,fechaDesde,fechaHasta){
+    let etiquetasAg = Array.isArray(etiquetas) && etiquetas.length > 0 ? etiquetas : null;
+    let fechaDesdeAg = isValidDate(fechaDesde) ? fechaDesde : null;
+    let fechaHastaAg = isValidDate(fechaHasta) ? fechaHasta : new Date().toISOString().slice(0,10);
+    let grupoFiltrado = filtrarGastos(fechaDesdeAg,fechaHastaAg,etiquetasAg);
 
-    let etiquetasG = etiquetas.length === 0 ? [] : etiquetas;
-    let fechaDesdeG = isValidDate(fechaDesde) ? Date.parse(fechaDesde) : null;
-    let fechaHastaG = isValidDate(fechaHasta) ? Date.parse(fechaHasta) : null;
+    return grupoFiltrado.reduce(() => {
 
-    filtrarGastos()
-
-
-
-
+    },{});
 
 }
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.
