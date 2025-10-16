@@ -161,10 +161,12 @@ function agruparGastos(periodo = "mes",etiquetas,fechaDesde,fechaHasta){
     let etiquetasAg = Array.isArray(etiquetas) && etiquetas.length > 0 ? etiquetas : null;
     let fechaDesdeAg = isValidDate(fechaDesde) ? fechaDesde : null;
     let fechaHastaAg = isValidDate(fechaHasta) ? fechaHasta : new Date().toISOString().slice(0,10);
-    let grupoFiltrado = filtrarGastos(fechaDesdeAg,fechaHastaAg,etiquetasAg);
+    let grupoFiltrado = filtrarGastos({ fechaDesde: fechaDesdeAg, fechaHasta: fechaHastaAg, etiquetasTiene: etiquetasAg });
 
-    return grupoFiltrado.reduce(() => {
-
+    return grupoFiltrado.reduce((acum, item) => {
+        let p = item.obtenerPeriodoAgrupacion(periodo);
+        acum[p] = (item.valor); 
+        return acum;
     },{});
 
 }
