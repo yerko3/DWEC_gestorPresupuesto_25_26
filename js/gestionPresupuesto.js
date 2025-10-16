@@ -165,7 +165,7 @@ function agruparGastos(periodo = "mes",etiquetas,fechaDesde,fechaHasta){
 
     return grupoFiltrado.reduce((acum, item) => {
         let p = item.obtenerPeriodoAgrupacion(periodo);
-        acum[p] = (item.valor); 
+        acum[p] = ((acum[p] || 0) + item.valor); 
         return acum;
     },{});
 
