@@ -66,7 +66,8 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
       spanValor.className = "agrupacion-dato-valor";
       spanValor.textContent = valor;
   
-      divAgrupacionDato.append(spanClave, spanValor);
+      divAgrupacionDato.appendChild(spanClave);
+      divAgrupacionDato.appendChild(spanValor);
       divAgrupacion.appendChild(divAgrupacionDato);
     }
   
