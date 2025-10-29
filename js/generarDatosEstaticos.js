@@ -21,3 +21,4 @@ Js2.anyadirGasto(g5);
 Js2.anyadirGasto(g6);
 
 Js1.mostrarDatoEnId("gastos-totales",Js2.calcularTotalGastos());
+Js1.mostrarDatoEnId("balance-total",Js2.calcularBalance());
