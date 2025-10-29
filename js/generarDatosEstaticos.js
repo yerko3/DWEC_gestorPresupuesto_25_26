@@ -13,3 +13,9 @@ const g4 = new Js2.CrearGasto("Gasolina", 60.42, "2021-10-08", "transporte", "ga
 const g5 = new Js2.CrearGasto("Seguro hogar", 206.45, "2021-09-26", "casa", "seguros");
 const g6 = new Js2.CrearGasto("Seguro coche", 195.78, "2021-10-06", "transporte", "seguros");
 
+Js2.anyadirGasto(g1);
+Js2.anyadirGasto(g2);
+Js2.anyadirGasto(g3);
+Js2.anyadirGasto(g4);
+Js2.anyadirGasto(g5);
+Js2.anyadirGasto(g6);
