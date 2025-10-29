@@ -19,3 +19,5 @@ Js2.anyadirGasto(g3);
 Js2.anyadirGasto(g4);
 Js2.anyadirGasto(g5);
 Js2.anyadirGasto(g6);
+
+Js1.mostrarDatoEnId("gastos-totales",Js2.calcularTotalGastos());
