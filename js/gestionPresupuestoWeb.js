@@ -1,5 +1,6 @@
 import * as Js1 from "./gestionPresupuesto.js";
 
+
 function mostrarDatoEnId(id, valor){
     document.getElementById(id).innerHTML = valor;
 }
@@ -76,6 +77,16 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
     contenedor.appendChild(divAgrupacion);
   }
   
+  function repintar(){
+    
+  }
+
+  function actualizarPresupuestoWeb(){
+    let presupuesto = +prompt("Introduce un presupuesto");
+    Js1.actualizarPresupuesto(presupuesto);
+
+  }
+
 export {
    mostrarDatoEnId,
    mostrarGastoWeb,
