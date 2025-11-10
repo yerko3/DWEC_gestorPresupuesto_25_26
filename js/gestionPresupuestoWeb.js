@@ -78,6 +78,11 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
   }
   
   function repintar(){
+    mostrarDatoEnId("presupuesto",Js1.mostrarPresupuesto());
+    mostrarDatoEnId("gastos-totales",Js1.calcularTotalGastos());
+    mostrarDatoEnId("balance-total",Js1.calcularBalance());
+    document.getElementById("listado-gastos-completo").innerHTML = "";
+    
     
   }
 
@@ -90,5 +95,7 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
 export {
    mostrarDatoEnId,
    mostrarGastoWeb,
-   mostrarGastosAgrupadosWeb
+   mostrarGastosAgrupadosWeb,
+   repintar,
+   actualizarPresupuestoWeb
 }
