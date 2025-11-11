@@ -89,10 +89,8 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
     let presupuesto = +prompt("Introduce un presupuesto");
     Js1.actualizarPresupuesto(presupuesto);
     repintar();
-    let botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
-    botonActualizarPresupuesto.addEventListener('click',Js1.mostrarPresupuesto());
-
   }
+
 
 export {
    mostrarDatoEnId,

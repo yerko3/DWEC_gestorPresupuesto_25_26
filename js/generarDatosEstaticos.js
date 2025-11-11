@@ -3,6 +3,7 @@ import * as Js1 from "./gestionPresupuestoWeb.js";
 import * as Js2 from "./gestionPresupuesto.js";
 
 
+
 Js2.actualizarPresupuesto(1500);
 Js1.mostrarDatoEnId("presupuesto",Js2.mostrarPresupuesto());
 
@@ -32,3 +33,6 @@ Js1.mostrarGastoWeb("listado-gastos-filtrado-4",Js2.filtrarGastos({valorMaximo: 
 Js1.mostrarGastosAgrupadosWeb("agrupacion-dia",Js2.agruparGastos("dia"),"día");
 Js1.mostrarGastosAgrupadosWeb("agrupacion-mes",Js2.agruparGastos("mes"),"mes");
 Js1.mostrarGastosAgrupadosWeb("agrupacion-anyo",Js2.agruparGastos("anyo"),"año");
+
+let botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
+botonActualizarPresupuesto.addEventListener('click', Js1.actualizarPresupuestoWeb);
