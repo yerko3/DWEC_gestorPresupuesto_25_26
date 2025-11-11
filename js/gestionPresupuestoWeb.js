@@ -82,13 +82,15 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
     mostrarDatoEnId("gastos-totales",Js1.calcularTotalGastos());
     mostrarDatoEnId("balance-total",Js1.calcularBalance());
     document.getElementById("listado-gastos-completo").innerHTML = "";
-    
-    
+    mostrarGastoWeb("listado-gastos-completo",Js1.listarGastos());    
   }
 
   function actualizarPresupuestoWeb(){
     let presupuesto = +prompt("Introduce un presupuesto");
     Js1.actualizarPresupuesto(presupuesto);
+    repintar();
+    let botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
+    botonActualizarPresupuesto.addEventListener('click',Js1.mostrarPresupuesto());
 
   }
 
