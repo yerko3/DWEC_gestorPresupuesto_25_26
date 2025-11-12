@@ -30,20 +30,18 @@ function mostrarGastoWeb(idElemento, gasto) {
    const divEtiquetas = document.createElement("div");
    divEtiquetas.className = "gasto-etiquetas";
 
-   let objBorrarEtiqueta = new BorrarEtiquetashandle();
-   objBorrarEtiqueta.gasto = gasto;
+ 
    const etiquetas = Array.isArray(gasto.etiquetas) ? gasto.etiquetas : [];
    for (let i = 0; i < etiquetas.length; i++) {
-       const span = document.createElement("span");
-       span.className = "gasto-etiquetas-etiqueta";
-       span.textContent = `${gasto.etiquetas[i]}`;
-        objBorrarEtiqueta.etiqueta = gasto.etiquetas[i];
-        span.addEventListener("click", objBorrarEtiqueta);
-       divEtiquetas.appendChild(span);
+      let objBorrarEtiqueta = new BorrarEtiquetashandle();
+      objBorrarEtiqueta.gasto = gasto;
+      const span = document.createElement("span");
+      span.className = "gasto-etiquetas-etiqueta";
+      span.textContent = `${gasto.etiquetas[i]}`;
+      objBorrarEtiqueta.etiqueta = gasto.etiquetas[i];
+      span.addEventListener("click", objBorrarEtiqueta);
+      divEtiquetas.appendChild(span);
    }
-
-
-
    const buttonEdicion = document.createElement("button");
    buttonEdicion.className = "gasto-editar";
    buttonEdicion.type = "button";
