@@ -103,6 +103,24 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
     repintar();
   }
 
+  function EditarHandle(){
+    this.handleEvent = function(evento){
+      //this.gasto 
+      let descripcion = prompt("Introduce la descripcion");
+      let valor = +prompt("Introduce el valor");
+      let fecha = prompt("Introduce la fecha en formato (yyyy-mm-dd)");
+      let etiquetas = prompt("Introduce las etiquetas y sepralas por comas");
+      let ArrayEtiquetas = etiquetas.split(',');
+      
+      }
+  }
+
+let botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
+botonActualizarPresupuesto.addEventListener('click', actualizarPresupuestoWeb);
+
+let botonAyadirGasto = document.getElementById("anyadirgasto");
+botonAyadirGasto.addEventListener('click',nuevoGastoWeb);
+
 export {
    mostrarDatoEnId,
    mostrarGastoWeb,

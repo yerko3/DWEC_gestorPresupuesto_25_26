@@ -33,9 +33,3 @@ Js1.mostrarGastoWeb("listado-gastos-filtrado-4",Js2.filtrarGastos({valorMaximo: 
 Js1.mostrarGastosAgrupadosWeb("agrupacion-dia",Js2.agruparGastos("dia"),"día");
 Js1.mostrarGastosAgrupadosWeb("agrupacion-mes",Js2.agruparGastos("mes"),"mes");
 Js1.mostrarGastosAgrupadosWeb("agrupacion-anyo",Js2.agruparGastos("anyo"),"año");
-
-let botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
-botonActualizarPresupuesto.addEventListener('click', Js1.actualizarPresupuestoWeb);
-
-let botonAyadirGasto = document.getElementById("anyadirgasto");
-botonAyadirGasto.addEventListener('click',Js1.nuevoGastoWeb);
