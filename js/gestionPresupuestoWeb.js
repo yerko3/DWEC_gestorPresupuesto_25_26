@@ -18,7 +18,6 @@ function mostrarGastoWeb(idElemento, gasto) {
    const divDescripcion = document.createElement("div");
    divDescripcion.className = "gasto-descripcion";
    divDescripcion.textContent = `${gasto.descripcion}`;
-   console.log(gasto.descripcion)
 
    const divFecha = document.createElement("div");
    divFecha.className = "gasto-fecha";
@@ -45,8 +44,14 @@ function mostrarGastoWeb(idElemento, gasto) {
    let objEditar = new EditarHandle();
    objEditar.gasto = gasto;
    buttonEdicion.addEventListener("click", objEditar);
-   divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion);
-
+    const buttonBorrar = document.createElement("button");
+    buttonBorrar.className = "gasto-borrar";
+    buttonBorrar.type = "button";
+    buttonBorrar.textContent = "Borrar";
+    let objBorrar = new BorrarHandle();
+    objBorrar.gasto = gasto;
+    buttonBorrar.addEventListener("click", objBorrar);
+   divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion,buttonBorrar);
    contenedor.append(divGasto);
 }
 
@@ -125,6 +130,13 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
       repintar();
       }
   }
+function BorrarHandle(){
+  this.handleEvent = function(evento){
+    let idGasto = this.gasto.id;
+    Js1.borrarGasto(idGasto);
+    repintar();
+  }
+}
 
 let botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
 botonActualizarPresupuesto.addEventListener('click', actualizarPresupuestoWeb);
@@ -139,5 +151,6 @@ export {
    repintar,
    actualizarPresupuestoWeb,
    nuevoGastoWeb,
-   EditarHandle
+   EditarHandle,
+   BorrarHandle
 }
