@@ -137,7 +137,11 @@ function BorrarHandle(){
     repintar();
   }
 }
-
+function BorrarEtiquetashandle(){
+  this.handleEvent = function(evento){
+    
+  }
+}
 let botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
 botonActualizarPresupuesto.addEventListener('click', actualizarPresupuestoWeb);
 
