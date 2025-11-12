@@ -36,3 +36,6 @@ Js1.mostrarGastosAgrupadosWeb("agrupacion-anyo",Js2.agruparGastos("anyo"),"año"
 
 let botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
 botonActualizarPresupuesto.addEventListener('click', Js1.actualizarPresupuestoWeb);
+
+let botonAyadirGasto = document.getElementById("anyadirgasto");
+botonAyadirGasto.addEventListener('click',Js1.nuevoGastoWeb);

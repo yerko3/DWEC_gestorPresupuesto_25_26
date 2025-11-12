@@ -97,7 +97,10 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
     let fecha = prompt("Introduce la fecha en formato (yyyy-mm-dd)");
     let etiquetas = prompt("Introduce las etiquetas y sepralas por comas");
     let ArrayEtiquetas = etiquetas.split(',');
-    
+
+    let gasto = new Js1.CrearGasto(descripcion,valor,fecha,...ArrayEtiquetas);
+    Js1.anyadirGasto(gasto);
+    repintar();
   }
 
 export {
@@ -105,5 +108,6 @@ export {
    mostrarGastoWeb,
    mostrarGastosAgrupadosWeb,
    repintar,
-   actualizarPresupuestoWeb
+   actualizarPresupuestoWeb,
+   nuevoGastoWeb
 }
