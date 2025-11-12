@@ -26,7 +26,7 @@ function mostrarGastoWeb(idElemento, gasto) {
 
    const divValor = document.createElement("div");
    divValor.className = "gasto-valor";
-   divValor.textContent = `${gasto.valor} €`;
+   divValor.textContent = `${gasto.valor}`;
 
    const divEtiquetas = document.createElement("div");
    divEtiquetas.className = "gasto-etiquetas";
@@ -38,16 +38,16 @@ function mostrarGastoWeb(idElemento, gasto) {
        span.textContent = `${gasto.etiquetas[i]}`;
        divEtiquetas.appendChild(span);
    }
-
-   divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas);
    const buttonEdicion = document.createElement("button");
-   buttonEdicion.type = "button";
    buttonEdicion.className = "gasto-editar";
-   buttonEdicion.textContent = "Editar Gasto";
+   buttonEdicion.type = "button";
+   buttonEdicion.textContent = "Editar";
    let objEditar = new EditarHandle();
    objEditar.gasto = gasto;
    buttonEdicion.addEventListener("click", objEditar);
-   contenedor.append(divGasto,buttonEdicion);
+   divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion);
+
+   contenedor.append(divGasto);
 }
 
 function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
@@ -111,11 +111,10 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
 
   function EditarHandle(){
     this.handleEvent = function(evento){
-      //this.gasto 
-      let descripcion = prompt("Introduce la descripcion");
-      let valor = +prompt("Introduce el valor");
-      let fecha = prompt("Introduce la fecha en formato (yyyy-mm-dd)");
-      let etiquetas = prompt("Introduce las etiquetas y sepralas por comas");
+      let descripcion = prompt("Introduce la descripcion", this.gasto.descripcion);
+      let valor = +prompt("Introduce el valor", this.gasto.valor);
+      let fecha = prompt("Introduce la fecha en formato (yyyy-mm-dd)", this.gasto.fecha);
+      let etiquetas = prompt("Introduce las etiquetas y sepralas por comas", this.gasto.etiquetas);
       let ArrayEtiquetas = etiquetas.split(',');
 
       this.gasto.actualizarValor(valor);
