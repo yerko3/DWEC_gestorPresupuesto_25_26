@@ -37,6 +37,9 @@ function mostrarGastoWeb(idElemento, gasto) {
        span.textContent = `${gasto.etiquetas[i]}`;
        divEtiquetas.appendChild(span);
    }
+   const etiquetaBorrar = document.createElement("button");
+
+
    const buttonEdicion = document.createElement("button");
    buttonEdicion.className = "gasto-editar";
    buttonEdicion.type = "button";
@@ -139,7 +142,8 @@ function BorrarHandle(){
 }
 function BorrarEtiquetashandle(){
   this.handleEvent = function(evento){
-    
+    this.gasto.borrarEtiquetas(this.etiqueta);
+    repintar();
   }
 }
 let botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
