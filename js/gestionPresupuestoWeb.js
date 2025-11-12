@@ -40,8 +40,14 @@ function mostrarGastoWeb(idElemento, gasto) {
    }
 
    divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas);
-
-   contenedor.appendChild(divGasto);
+   const buttonEdicion = document.createElement("button");
+   buttonEdicion.type = "button";
+   buttonEdicion.className = "gasto-editar";
+   buttonEdicion.textContent = "Editar Gasto";
+   let objEditar = new EditarHandle();
+   objEditar.gasto = gasto;
+   buttonEdicion.addEventListener("click", objEditar);
+   contenedor.append(divGasto,buttonEdicion);
 }
 
 function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
@@ -111,7 +117,13 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
       let fecha = prompt("Introduce la fecha en formato (yyyy-mm-dd)");
       let etiquetas = prompt("Introduce las etiquetas y sepralas por comas");
       let ArrayEtiquetas = etiquetas.split(',');
-      
+
+      this.gasto.actualizarValor(valor);
+      this.gasto.actualizarDescripcion(descripcion);
+      this.gasto.actualizarFecha(fecha);
+      this.gasto.anyadirEtiquetas(ArrayEtiquetas);
+
+      repintar();
       }
   }
 
@@ -127,5 +139,6 @@ export {
    mostrarGastosAgrupadosWeb,
    repintar,
    actualizarPresupuestoWeb,
-   nuevoGastoWeb
+   nuevoGastoWeb,
+   EditarHandle
 }
