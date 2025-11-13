@@ -123,7 +123,7 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
     this.handleEvent = function(evento){
       let descripcion = prompt("Introduce la descripcion", this.gasto.descripcion);
       let valor = +prompt("Introduce el valor", this.gasto.valor);
-      let fecha = prompt("Introduce la fecha en formato (yyyy-mm-dd)", this.gasto.fecha);
+      let fecha = prompt("Introduce la fecha en formato (yyyy-mm-dd)", new Date(this.gasto.fecha).toISOString().slice(0,10));
       let etiquetas = prompt("Introduce las etiquetas y sepralas por comas", this.gasto.etiquetas);
       let ArrayEtiquetas = etiquetas.split(',');
 
