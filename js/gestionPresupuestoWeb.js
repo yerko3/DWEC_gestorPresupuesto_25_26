@@ -150,6 +150,15 @@ function BorrarEtiquetashandle(){
     repintar();
   }
 }
+function nuevoGastoWebFormulario(){
+  let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
+  var formulario = plantillaFormulario.querySelector("form");
+  formulario.addEventListener("submit", function(event){
+    event.preventDefault();
+  })    
+}
+
+nuevoGastoWebFormulario()
 let botonActualizarPresupuesto = document.getElementById("actualizarpresupuesto");
 botonActualizarPresupuesto.addEventListener('click', actualizarPresupuestoWeb);
 
