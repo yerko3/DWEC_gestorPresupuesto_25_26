@@ -56,7 +56,11 @@ function mostrarGastoWeb(idElemento, gasto) {
     let objBorrar = new BorrarHandle();
     objBorrar.gasto = gasto;
     buttonBorrar.addEventListener("click", objBorrar);
-   divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion,buttonBorrar);
+    const buttonEditarformualrio = document.createElement("button");
+    buttonEditarformualrio.className = "gasto-editar-formulario";
+    buttonEditarformualrio.type = "button";
+    buttonEditarformualrio.textContent = "Editar (formulario)";
+   divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion,buttonBorrar,buttonEditarformualrio);
    contenedor.append(divGasto);
 }
 
@@ -158,6 +162,11 @@ function BotonCancelarhandle(){
       formulario.remove();
       const botonDesactivado = document.getElementById("anyadirgasto-formulario");
       botonDesactivado.disabled = false;
+  }
+}
+function EditarHandleformulario(){
+  this.handleEvent = function(event){
+
   }
 }
 function nuevoGastoWebFormulario(){
