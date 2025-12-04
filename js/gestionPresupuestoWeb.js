@@ -60,6 +60,8 @@ function mostrarGastoWeb(idElemento, gasto) {
     buttonEditarformualrio.className = "gasto-editar-formulario";
     buttonEditarformualrio.type = "button";
     buttonEditarformualrio.textContent = "Editar (formulario)";
+    let objEditarForm = new EditarHandleformulario();
+    buttonEditarformualrio.addEventListener("click",objEditarForm);
    divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion,buttonBorrar,buttonEditarformualrio);
    contenedor.append(divGasto);
 }
@@ -165,7 +167,11 @@ function BotonCancelarhandle(){
   }
 }
 function EditarHandleformulario(){
-  this.handleEvent = function(event){
+  this.handleEvent = function(event){ 
+    const gasto = this.gasto;
+      let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
+      let formulario = plantillaFormulario.querySelector("form");
+
 
   }
 }
@@ -173,7 +179,6 @@ function nuevoGastoWebFormulario(){
   let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
   let formulario = plantillaFormulario.querySelector("form");
   const btnCancelar = formulario.querySelector("button.cancelar");
-  console.log(btnCancelar)
   const botonDesactivado = document.getElementById("anyadirgasto-formulario");
   botonDesactivado.disabled = true;
   formulario.addEventListener("submit", function(event){
