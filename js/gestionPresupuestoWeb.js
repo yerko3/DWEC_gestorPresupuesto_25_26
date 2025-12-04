@@ -150,9 +150,20 @@ function BorrarEtiquetashandle(){
     repintar();
   }
 }
+function BotonCancelarhandle(){
+  this.handleEvent = function(evento){
+      let base = document.getElementById("controlesprincipales");
+      let formulario = document.querySelector("form");
+      formulario.innerHTML = "";
+      formulario.remove();
+      const botonDesactivado = document.getElementById("anyadirgasto-formulario");
+      botonDesactivado.disabled = false;
+  }
+}
 function nuevoGastoWebFormulario(){
   let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
   let formulario = plantillaFormulario.querySelector("form");
+  const btnCancelar = formulario.querySelector("button.cancelar");
   const botonDesactivado = document.getElementById("anyadirgasto-formulario");
   botonDesactivado.disabled = true;
   formulario.addEventListener("submit", function(event){
@@ -167,6 +178,8 @@ function nuevoGastoWebFormulario(){
     Js1.anyadirGasto(gasto);
     repintar();
   })
+  const objCancelar = new BotonCancelarhandle();
+  btnCancelar.addEventListener("click",objCancelar);
   
   let base = document.getElementById("controlesprincipales");
   base.append(plantillaFormulario)
