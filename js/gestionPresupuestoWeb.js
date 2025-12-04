@@ -164,6 +164,7 @@ function nuevoGastoWebFormulario(){
   let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
   let formulario = plantillaFormulario.querySelector("form");
   const btnCancelar = formulario.querySelector("button.cancelar");
+  console.log(btnCancelar)
   const botonDesactivado = document.getElementById("anyadirgasto-formulario");
   botonDesactivado.disabled = true;
   formulario.addEventListener("submit", function(event){
@@ -176,6 +177,7 @@ function nuevoGastoWebFormulario(){
     let ArrayEtiquetas = etiquetas.split(',');
     let gasto = new Js1.CrearGasto(descripcion,valor,fecha,...ArrayEtiquetas);
     Js1.anyadirGasto(gasto);
+    botonDesactivado.disabled = false;
     repintar();
   })
   const objCancelar = new BotonCancelarhandle();
