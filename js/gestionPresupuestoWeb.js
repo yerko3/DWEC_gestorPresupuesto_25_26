@@ -165,6 +165,9 @@ function BotonCancelarhandle(){
       formulario.remove();
       const botonDesactivado = document.getElementById("anyadirgasto-formulario");
       botonDesactivado.disabled = false;
+      let botonoesEditar = document.querySelectorAll(".gasto-editar-formulario");
+      const ArrayBotonoesEditar = Array.from(botonoesEditar);
+      ArrayBotonoesEditar.map(v => v.disabled = false)
   }
 }
 function BotonEviarHandle(){
@@ -179,7 +182,9 @@ function BotonEviarHandle(){
     this.gasto.actualizarValor(valor);
     this.gasto.actualizarDescripcion(descripcion);
     this.gasto.actualizarFecha(fecha);
-    this.gasto.anyadirEtiquetas(ArrayEtiquetas);
+        if(etiquetas.length > 0)
+      this.gasto.anyadirEtiquetas(ArrayEtiquetas);
+    repintar();
   }
 }
 function EditarHandleformulario(){
