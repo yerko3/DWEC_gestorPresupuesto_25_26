@@ -61,6 +61,7 @@ function mostrarGastoWeb(idElemento, gasto) {
     buttonEditarformualrio.type = "button";
     buttonEditarformualrio.textContent = "Editar (formulario)";
     let objEditarForm = new EditarHandleformulario();
+    objEditarForm.gasto = gasto;
     buttonEditarformualrio.addEventListener("click",objEditarForm);
    divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion,buttonBorrar,buttonEditarformualrio);
    contenedor.append(divGasto);
@@ -166,13 +167,38 @@ function BotonCancelarhandle(){
       botonDesactivado.disabled = false;
   }
 }
+function BotonEviarHandle(){
+  this.handleEvent = function(event){
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const descripcion = data.get("descripcion");
+    const valor = +data.get("valor");
+    const fecha = data.get("fecha");
+    const etiquetas = data.get("etiquetas");
+    let ArrayEtiquetas = etiquetas.split(',');    
+    this.gasto.actualizarValor(valor);
+    this.gasto.actualizarDescripcion(descripcion);
+    this.gasto.actualizarFecha(fecha);
+    this.gasto.anyadirEtiquetas(ArrayEtiquetas);
+  }
+}
 function EditarHandleformulario(){
   this.handleEvent = function(event){ 
     const gasto = this.gasto;
       let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
       let formulario = plantillaFormulario.querySelector("form");
+      const btnCancelar = formulario.querySelector("button.cancelar");
+      const bottonEnviar = new BotonEviarHandle();
+      bottonEnviar.gasto = gasto;
 
+      let descripcion = plantillaFormulario.getElementById('descripcion');
+      descripcion.value = gasto.descripcion;
 
+      formulario.addEventListener("submit",bottonEnviar);
+      const objCancelar = new BotonCancelarhandle();
+      btnCancelar.addEventListener("click",objCancelar);
+      event.currentTarget.disabled = true;
+      event.currentTarget.append(plantillaFormulario);
   }
 }
 function nuevoGastoWebFormulario(){
