@@ -159,15 +159,10 @@ function BorrarEtiquetashandle(){
 }
 function BotonCancelarhandle(){
   this.handleEvent = function(evento){
-      let base = document.getElementById("controlesprincipales");
-      let formulario = document.querySelector("form");
-      formulario.innerHTML = "";
+      let formulario = evento.currentTarget.closest("form");
       formulario.remove();
-      const botonDesactivado = document.getElementById("anyadirgasto-formulario");
-      botonDesactivado.disabled = false;
-      let botonoesEditar = document.querySelectorAll(".gasto-editar-formulario");
-      const ArrayBotonoesEditar = Array.from(botonoesEditar);
-      ArrayBotonoesEditar.map(v => v.disabled = false)
+      document.getElementById("anyadirgasto-formulario").disabled = false;
+      document.querySelectorAll(".gasto-editar-formulario").forEach(b => b.disabled = false);
   }
 }
 function BotonEviarHandle(){
@@ -196,11 +191,11 @@ function EditarHandleformulario(){
       const bottonEnviar = new BotonEviarHandle();
       bottonEnviar.gasto = gasto;
 
-      let descripcion = plantillaFormulario.getElementById('descripcion');
+      let descripcion = formulario.querySelector('#descripcion');
+      let valor = formulario.querySelector('#valor');
+      let fecha = formulario.querySelector('#fecha');
       descripcion.value = gasto.descripcion;
-      let valor = plantillaFormulario.getElementById("valor");
       valor.value = gasto.valor;
-      let fecha = plantillaFormulario.getElementById("fecha");
       fecha.value = new Date(gasto.fecha).toISOString().slice(0,10);
       formulario.addEventListener("submit",bottonEnviar);
       const objCancelar = new BotonCancelarhandle();
