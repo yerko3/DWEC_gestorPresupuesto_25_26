@@ -193,7 +193,10 @@ function EditarHandleformulario(){
 
       let descripcion = plantillaFormulario.getElementById('descripcion');
       descripcion.value = gasto.descripcion;
-
+      let valor = plantillaFormulario.getElementById("valor");
+      valor.value = gasto.valor;
+      let fecha = plantillaFormulario.getElementById("fecha");
+      fecha.value = new Date(gasto.fecha).toISOString().slice(0,10);
       formulario.addEventListener("submit",bottonEnviar);
       const objCancelar = new BotonCancelarhandle();
       btnCancelar.addEventListener("click",objCancelar);
