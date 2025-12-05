@@ -185,23 +185,29 @@ function BotonEviarHandle(){
 function EditarHandleformulario(){
   this.handleEvent = function(event){ 
     const gasto = this.gasto;
+
       let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
-      let formulario = plantillaFormulario.querySelector("form");
-      const btnCancelar = formulario.querySelector("button.cancelar");
-      const bottonEnviar = new BotonEviarHandle();
-      bottonEnviar.gasto = gasto;
+      let formulario = plantillaFormulario.querySelector("form");;
 
       let descripcion = formulario.querySelector('#descripcion');
       let valor = formulario.querySelector('#valor');
       let fecha = formulario.querySelector('#fecha');
+
       descripcion.value = gasto.descripcion;
       valor.value = gasto.valor;
       fecha.value = new Date(gasto.fecha).toISOString().slice(0,10);
+
+      const btnCancelar = formulario.querySelector("button.cancelar");
+
+      const bottonEnviar = new BotonEviarHandle();
+      bottonEnviar.gasto = gasto
       formulario.addEventListener("submit",bottonEnviar);
+
       const objCancelar = new BotonCancelarhandle();
       btnCancelar.addEventListener("click",objCancelar);
       event.currentTarget.disabled = true;
-      event.currentTarget.append(plantillaFormulario);
+      
+      event.currentTarget.parentElement.appendChild(formulario);
   }
 }
 function nuevoGastoWebFormulario(){
