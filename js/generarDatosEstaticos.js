@@ -33,3 +33,8 @@ Js1.mostrarGastoWeb("listado-gastos-filtrado-4",Js2.filtrarGastos({valorMaximo: 
 Js1.mostrarGastosAgrupadosWeb("agrupacion-dia",Js2.agruparGastos("dia"),"día");
 Js1.mostrarGastosAgrupadosWeb("agrupacion-mes",Js2.agruparGastos("mes"),"mes");
 Js1.mostrarGastosAgrupadosWeb("agrupacion-anyo",Js2.agruparGastos("anyo"),"año");
+
+console.log(Js2.filtrarGastos({descripcionContiene:"carne"}))
+
+
+Js1.filtrarGastosWeb();

@@ -249,7 +249,23 @@ function filtrarGastosWeb(){
     const fechahas = data.get("formulario-filtrado-fecha-hasta");
     const etiquetas = Js1.transformarListadoEtiquetas(data.get("formulario-filtrado-etiquetas-tiene"));
 
-    const filtrado = Js1.filtrarGastos({descripcionContiene: descripcion,valorMinimo: valorMini,valorMaximo: valorMax, fechaDesde: fechades, fechaHasta: fechahas,etiquetasTiene: etiquetas})
+    console.log(`${descripcion},${valorMini},${valorMax},${fechades},${fechahas},${etiquetas}`)
+       
+      let filtro = {}
+      if(valorMini != null || valorMini != undefined)
+        filtro.valorMinimo = valorMini;
+      if(valorMax != null || valorMax != undefined)
+        filtro.valorMaximo = valorMax;
+      if(fechades != null || fechades != undefined)
+        filtrado.fechaDesde = fechades;
+      if(fechahas != null || fechahas != undefined)
+        filtrado.fechaHasta = fechahas;
+      if(descripcion != null || descripcion != undefined)
+        filtrado.descripcionContiene = descripcion;
+      if(etiquetas != null || etiquetas != undefined)
+        filtrado.etiquetasTiene = etiquetas;
+    const filtrado = Js1.filtrarGastos(filtro)
+    console.log(filtrado)
     mostrarGastoWeb("listado-gastos-completo",filtrado);
   });
 }
@@ -271,5 +287,6 @@ export {
    actualizarPresupuestoWeb,
    nuevoGastoWeb,
    EditarHandle,
-   BorrarHandle
+   BorrarHandle,
+   filtrarGastosWeb
 }
