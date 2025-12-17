@@ -243,12 +243,14 @@ function filtrarGastosWeb(){
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const descripcion = data.get("formulario-filtrado-descripcion");
-    const valorMinimo = +data.get("formulario-filtrado-valor-minimo");
-    const valorMaximo = +data.get("formulario-filtrado-valor-maximo");
+    const valorMini = +data.get("formulario-filtrado-valor-minimo");
+    const valorMax = +data.get("formulario-filtrado-valor-maximo");
     const fechades = data.get("formulario-filtrado-fecha-desde");
     const fechahas = data.get("formulario-filtrado-fecha-hasta");
     const etiquetas = Js1.transformarListadoEtiquetas(data.get("formulario-filtrado-etiquetas-tiene"));
 
+    const filtrado = Js1.filtrarGastos({descripcionContiene: descripcion,valorMinimo: valorMini,valorMaximo: valorMax, fechaDesde: fechades, fechaHasta: fechahas,etiquetasTiene: etiquetas})
+    mostrarGastoWeb("listado-gastos-completo",filtrado);
   });
 }
 
