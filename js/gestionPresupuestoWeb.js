@@ -237,37 +237,42 @@ function nuevoGastoWebFormulario(){
   let base = document.getElementById("controlesprincipales");
   base.append(plantillaFormulario)
 }
-function filtrarGastosWeb(event) {
-  event.preventDefault();
+function filtrarGastosWeb(){
+  const formulario = document.getElementById("formulario-filtrado") 
+  formulario.addEventListener("submit", function(event){
+    event.preventDefault();
+        
+    const data = new FormData(event.currentTarget);
+    const descripcion = data.get("formulario-filtrado-descripcion");
+    const valorMin = data.get("formulario-filtrado-valor-minimo");
+    const valorMax = data.get("formulario-filtrado-valor-maximo");
+    const fechaDesde = data.get("formulario-filtrado-fecha-desde");
+    const fechaHasta = data.get("formulario-filtrado-fecha-hasta");
+    const etiquetasTexto = data.get("formulario-filtrado-etiquetas-tiene");
 
-  const data = new FormData(event.currentTarget);
+    if (descripcion !== "")
+      filtro.descripcionContiene = descripcion;
 
-  const descripcion = data.get("formulario-filtrado-descripcion");
-  const valorMin = data.get("formulario-filtrado-valor-minimo");
-  const valorMax = data.get("formulario-filtrado-valor-maximo");
-  const fechaDesde = data.get("formulario-filtrado-fecha-desde");
-  const fechaHasta = data.get("formulario-filtrado-fecha-hasta");
-  const etiquetasTexto = data.get("formulario-filtrado-etiquetas-tiene");
+    if (valorMin !== "")
+      filtro.valorMinimo = Number(valorMin);
 
-    console.log(`${descripcion},${valorMini},${valorMax},${fechades},${fechahas},${etiquetas}`)
-       
-      let filtro = {}
-      if(valorMini < 0)
-        filtro.valorMinimo = valorMini;
-      if(valorMax < 0)
-        filtro.valorMaximo = valorMax;
-      if(fechades != "")
-        filtro.fechaDesde = fechades;
-      if(fechahas != "")
-        filtro.fechaHasta = fechahas;
-      if(descripcion != "")
-        filtro.descripcionContiene = descripcion;
-      if(etiquetas.length < 0)
-        filtro.etiquetasTiene = etiquetas;
+    if (valorMax !== "")
+      filtro.valorMaximo = Number(valorMax);
+
+    if (fechaDesde !== "")
+      filtro.fechaDesde = fechaDesde;
+
+    if (fechaHasta !== "")
+      filtro.fechaHasta = fechaHasta;
+
+    if (etiquetasTexto !== "") {
+      filtro.etiquetasTiene =
+        Js1.transformarListadoEtiquetas(etiquetasTexto);
+    }
+
     const filtrado = Js1.filtrarGastos(filtro)
-    console.log(filtrado)
     mostrarGastoWeb("listado-gastos-completo",filtrado);
-  
+  });
 }
 
 let botonAyadirGastoFormulario = document.getElementById("anyadirgasto-formulario");
