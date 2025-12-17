@@ -238,7 +238,17 @@ function nuevoGastoWebFormulario(){
   base.append(plantillaFormulario)
 }
 function filtrarGastosWeb(){
-  
+  const formulario = document.getElementById("formulario-filtrado") 
+  formulario.addEventListener("submit", function(event){
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const descripcion = data.get("formulario-filtrado-descripcion");
+    const valorMinimo = data.get("");
+    const valorMaximo = data.get("");
+    const fechaMax = data.get("");
+    const fechaMn = data.get("");
+
+  });
 }
 
 let botonAyadirGastoFormulario = document.getElementById("anyadirgasto-formulario");
