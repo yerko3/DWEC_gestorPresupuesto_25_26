@@ -237,17 +237,17 @@ function nuevoGastoWebFormulario(){
   let base = document.getElementById("controlesprincipales");
   base.append(plantillaFormulario)
 }
-function filtrarGastosWeb(){
-  const formulario = document.getElementById("formulario-filtrado") 
-  formulario.addEventListener("submit", function(event){
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const descripcion = data.get("formulario-filtrado-descripcion");
-    const valorMini = +data.get("formulario-filtrado-valor-minimo");
-    const valorMax = +data.get("formulario-filtrado-valor-maximo");
-    const fechades = data.get("formulario-filtrado-fecha-desde");
-    const fechahas = data.get("formulario-filtrado-fecha-hasta");
-    const etiquetas = Js1.transformarListadoEtiquetas(data.get("formulario-filtrado-etiquetas-tiene"));
+function filtrarGastosWeb(event) {
+  event.preventDefault();
+
+  const data = new FormData(event.currentTarget);
+
+  const descripcion = data.get("formulario-filtrado-descripcion");
+  const valorMin = data.get("formulario-filtrado-valor-minimo");
+  const valorMax = data.get("formulario-filtrado-valor-maximo");
+  const fechaDesde = data.get("formulario-filtrado-fecha-desde");
+  const fechaHasta = data.get("formulario-filtrado-fecha-hasta");
+  const etiquetasTexto = data.get("formulario-filtrado-etiquetas-tiene");
 
     console.log(`${descripcion},${valorMini},${valorMax},${fechades},${fechahas},${etiquetas}`)
        
@@ -267,7 +267,7 @@ function filtrarGastosWeb(){
     const filtrado = Js1.filtrarGastos(filtro)
     console.log(filtrado)
     mostrarGastoWeb("listado-gastos-completo",filtrado);
-  });
+  
 }
 
 let botonAyadirGastoFormulario = document.getElementById("anyadirgasto-formulario");
