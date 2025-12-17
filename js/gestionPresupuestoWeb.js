@@ -237,6 +237,9 @@ function nuevoGastoWebFormulario(){
   let base = document.getElementById("controlesprincipales");
   base.append(plantillaFormulario)
 }
+function filtrarGastosWeb(){
+  
+}
 
 let botonAyadirGastoFormulario = document.getElementById("anyadirgasto-formulario");
 botonAyadirGastoFormulario.addEventListener('click',nuevoGastoWebFormulario);

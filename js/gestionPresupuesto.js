@@ -171,7 +171,6 @@ function agruparGastos(periodo = "mes",etiquetas,fechaDesde,fechaHasta){
 
 }
 function transformarListadoEtiquetas(str){
-
     var result = str.split(/[,.:; ]+/);
     result.forEach((v, i) => result[i] = v.trim());
     return result;  
