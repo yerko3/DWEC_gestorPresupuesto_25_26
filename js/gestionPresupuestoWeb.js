@@ -252,18 +252,18 @@ function filtrarGastosWeb(){
     console.log(`${descripcion},${valorMini},${valorMax},${fechades},${fechahas},${etiquetas}`)
        
       let filtro = {}
-      if(valorMini != null || valorMini != undefined)
+      if(valorMini < 0)
         filtro.valorMinimo = valorMini;
-      if(valorMax != null || valorMax != undefined)
+      if(valorMax < 0)
         filtro.valorMaximo = valorMax;
-      if(fechades != null || fechades != undefined)
-        filtrado.fechaDesde = fechades;
-      if(fechahas != null || fechahas != undefined)
-        filtrado.fechaHasta = fechahas;
-      if(descripcion != null || descripcion != undefined)
-        filtrado.descripcionContiene = descripcion;
-      if(etiquetas != null || etiquetas != undefined)
-        filtrado.etiquetasTiene = etiquetas;
+      if(fechades != "")
+        filtro.fechaDesde = fechades;
+      if(fechahas != "")
+        filtro.fechaHasta = fechahas;
+      if(descripcion != "")
+        filtro.descripcionContiene = descripcion;
+      if(etiquetas.length < 0)
+        filtro.etiquetasTiene = etiquetas;
     const filtrado = Js1.filtrarGastos(filtro)
     console.log(filtrado)
     mostrarGastoWeb("listado-gastos-completo",filtrado);
