@@ -210,9 +210,7 @@ function EditarHandleformulario(){
       event.currentTarget.parentElement.appendChild(formulario);
   }
 }
-function transformarListadoEtiquetas(){
-  
-}
+
 
 function nuevoGastoWebFormulario(){
   let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
@@ -257,6 +255,5 @@ export {
    actualizarPresupuestoWeb,
    nuevoGastoWeb,
    EditarHandle,
-   BorrarHandle,
-   transformarListadoEtiquetas
+   BorrarHandle
 }
