@@ -250,6 +250,8 @@ function filtrarGastosWeb(){
     const fechaHasta = data.get("formulario-filtrado-fecha-hasta");
     const etiquetasTexto = data.get("formulario-filtrado-etiquetas-tiene");
 
+    let filtro = {};
+
     if (descripcion !== "")
       filtro.descripcionContiene = descripcion;
 
