@@ -34,5 +34,3 @@ Js1.mostrarGastosAgrupadosWeb("agrupacion-dia",Js2.agruparGastos("dia"),"día");
 Js1.mostrarGastosAgrupadosWeb("agrupacion-mes",Js2.agruparGastos("mes"),"mes");
 Js1.mostrarGastosAgrupadosWeb("agrupacion-anyo",Js2.agruparGastos("anyo"),"año");
 
-
-Js1.filtrarGastosWeb();
