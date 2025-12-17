@@ -8,6 +8,7 @@ function mostrarGastoWeb(idElemento, gasto) {
    const contenedor = document.getElementById(idElemento);
 
    if(Array.isArray(gasto)) {
+      contenedor.innerHTML = "";
        gasto.forEach(g => mostrarGastoWeb(idElemento, g));
        return;
  }
@@ -241,7 +242,7 @@ function filtrarGastosWeb(event){
     event.preventDefault();
         
     const data = new FormData(event.currentTarget);
-    
+
     const descripcion = data.get("formulario-filtrado-descripcion");
     const valorMin = data.get("formulario-filtrado-valor-minimo");
     const valorMax = data.get("formulario-filtrado-valor-maximo");
