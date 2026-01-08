@@ -276,6 +276,14 @@ function filtrarGastosWeb(event){
     mostrarGastoWeb("listado-gastos-completo",filtrado);
 }
 
+function guardarGastosWeb(event){
+
+}
+function cargarGastosWeb(){
+
+}
+
+
 let botonAyadirGastoFormulario = document.getElementById("anyadirgasto-formulario");
 botonAyadirGastoFormulario.addEventListener('click',nuevoGastoWebFormulario);
 
