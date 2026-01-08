@@ -280,14 +280,15 @@ function guardarGastosWeb(event){
   let gastos = Js1.listarGastos();
   localStorage.setItem("GestorGastosDWEC",JSON.stringify(gastos)); 
 }
-function cargarGastosWeb(event){
-  if(localStorage.getItem('GestorGastosDWEC') === null){
-    Js1.cargarGastos([])
-    repintar();
+function cargarGastosWeb(event) {
+  let datos = localStorage.getItem("GestorGastosDWEC");
+
+  if (datos === null) {
+    Js1.cargarGastos([]);
+  } else {
+    Js1.cargarGastos(JSON.parse(datos));
   }
-  let recup = JSON.parse(localStorage.getItem("GestorGastosDWEC"));
-  console.log(recup)
-  Js1.cargarGastos(recup);
+
   repintar();
 }
 
