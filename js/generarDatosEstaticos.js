@@ -35,3 +35,8 @@ Js1.mostrarGastosAgrupadosWeb("agrupacion-mes",Js2.agruparGastos("mes"),"mes");
 Js1.mostrarGastosAgrupadosWeb("agrupacion-anyo",Js2.agruparGastos("anyo"),"año");
 
 document.getElementById("formulario-filtrado").addEventListener("submit", Js1.filtrarGastosWeb);
+
+document.getElementById("guardar-gastos").addEventListener("click",Js1.guardarGastosWeb);
+document.getElementById("cargar-gastos").addEventListener("click",Js1.cargarGastosWeb);
+
+Js1.guardarGastosWeb()
