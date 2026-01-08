@@ -281,7 +281,13 @@ function guardarGastosWeb(event){
   localStorage.setItem("GestorGastosDWEC",JSON.stringify(gastos)); 
 }
 function cargarGastosWeb(event){
-  
+  if(localStorage.getItem('GestorGastosDWEC') === null){
+    Js1.cargarGastos([])
+    repintar();
+  }
+  let recup = JSON.parse(localStorage.getItem("GestorGastosDWEC"));
+  console.log(recup)
+  Js1.cargarGastos(recup);
   repintar();
 }
 
