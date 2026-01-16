@@ -292,6 +292,10 @@ function cargarGastosWeb(event) {
   repintar();
 }
 
+function cargarGastosApi(event){
+
+}
+
 
 let botonAyadirGastoFormulario = document.getElementById("anyadirgasto-formulario");
 botonAyadirGastoFormulario.addEventListener('click',nuevoGastoWebFormulario);
@@ -313,5 +317,6 @@ export {
    BorrarHandle,
    filtrarGastosWeb,
    guardarGastosWeb,
-   cargarGastosWeb
+   cargarGastosWeb,
+   cargarGastosApi
 }

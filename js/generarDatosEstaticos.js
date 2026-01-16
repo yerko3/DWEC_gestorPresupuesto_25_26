@@ -39,3 +39,5 @@ document.getElementById("formulario-filtrado").addEventListener("submit", Js1.fi
 document.getElementById("guardar-gastos").addEventListener("click",Js1.guardarGastosWeb);
 document.getElementById("cargar-gastos").addEventListener("click",Js1.cargarGastosWeb);
 
+
+document.getElementById("cargar-gastos-api").addEventListener("click",Js1.cargarGastosApi);
