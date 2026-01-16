@@ -292,7 +292,33 @@ function cargarGastosWeb(event) {
   repintar();
 }
 
-function cargarGastosApi(event){
+
+
+async function cargarGastosApi(event){
+  event.preventDefault();
+  const imputNombre = document.getElementById("nombre_usuario");
+  const nombreUsuario = imputNombre.value;
+
+  const url = `https://suhhtqjccd.execute-api.eu-west-1.amazonaws.com/latest/${nombreUsuario}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json'
+  }
+};
+try{
+  const response = await fetch(url,options);
+  if(!response.ok)
+    throw new Error('Error al obtener los datos')
+  const data = await response.json();
+  console.log(data)
+}
+catch(error){
+
+}
+
+
+
 
 }
 
