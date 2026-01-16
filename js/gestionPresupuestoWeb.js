@@ -64,7 +64,12 @@ function mostrarGastoWeb(idElemento, gasto) {
     let objEditarForm = new EditarHandleformulario();
     objEditarForm.gasto = gasto;
     buttonEditarformualrio.addEventListener("click",objEditarForm);
-   divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion,buttonBorrar,buttonEditarformualrio);
+    const buttonBorrarApi = document.createElement("button");
+    buttonBorrarApi.className = "gasto-borrar-api";
+    buttonBorrarApi.type = "button";
+    buttonBorrarApi.textContent = "Borrar (API)";
+    
+   divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion,buttonBorrar,buttonBorrarApi,buttonEditarformualrio);
    contenedor.append(divGasto);
 }
 
@@ -311,6 +316,8 @@ try{
   if(!response.ok)
     throw new Error('Error al obtener los datos')
   const data = await response.json();
+  Js1.cargarGastos(data);
+  repintar();
   console.log(data)
 }
 catch(error){
