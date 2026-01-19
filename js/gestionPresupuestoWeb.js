@@ -68,7 +68,9 @@ function mostrarGastoWeb(idElemento, gasto) {
     buttonBorrarApi.className = "gasto-borrar-api";
     buttonBorrarApi.type = "button";
     buttonBorrarApi.textContent = "Borrar (API)";
-    
+    let objBorrarGastoApi = new BorrarGastoHandleApi();
+    objBorrarGastoApi.gasto = gasto;
+    buttonBorrarApi.addEventListener("click", objBorrarGastoApi);
    divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion,buttonBorrar,buttonBorrarApi,buttonEditarformualrio);
    contenedor.append(divGasto);
 }
@@ -161,6 +163,30 @@ function BorrarEtiquetashandle(){
   this.handleEvent = function(evento){
     this.gasto.borrarEtiquetas(this.etiqueta);
     repintar();
+  }
+}
+function BorrarGastoHandleApi(){
+  this.handleEvent =  async function(evento){
+    evento.preventDefault();
+    const imputNombre = document.getElementById("nombre_usuario");
+    const nombreUsuario = imputNombre.value;
+
+    const url = `https://suhhtqjccd.execute-api.eu-west-1.amazonaws.com/latest/${nombreUsuario}/${this.gasto.id}`;
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json'
+      }
+    };
+    try{
+      const response = await fetch(url,options);
+      if(!response.ok)
+        throw new Error('Error al obtener los datos')
+      const data = await response.json();
+    }
+    catch{
+
+    }
   }
 }
 function BotonCancelarhandle(){
@@ -321,14 +347,10 @@ try{
   console.log(data)
 }
 catch(error){
-
+  console.log(error);
 }
 
-
-
-
 }
-
 
 let botonAyadirGastoFormulario = document.getElementById("anyadirgasto-formulario");
 botonAyadirGastoFormulario.addEventListener('click',nuevoGastoWebFormulario);
@@ -351,5 +373,6 @@ export {
    filtrarGastosWeb,
    guardarGastosWeb,
    cargarGastosWeb,
-   cargarGastosApi
+   cargarGastosApi,
+   BorrarGastoHandleApi
 }
