@@ -274,6 +274,17 @@ async function BotonEnviarHandle(gasto){
     }
 }
 
+function obtenerGastoDesdeFormulario(formulario){
+    const data = new FormData(formulario);
+    const descripcion = data.get("descripcion");
+    const valor = +data.get("valor");
+    const fecha = data.get("fecha");
+    const etiquetas = data.get("etiquetas");
+    let ArrayEtiquetas = etiquetas.split(',');
+    return new Js1.CrearGasto(descripcion,valor,fecha,...ArrayEtiquetas);
+}
+
+
 function nuevoGastoWebFormulario(){
   let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
   let formulario = plantillaFormulario.querySelector("form");
