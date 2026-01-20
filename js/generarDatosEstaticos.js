@@ -40,4 +40,4 @@ document.getElementById("guardar-gastos").addEventListener("click",Js1.guardarGa
 document.getElementById("cargar-gastos").addEventListener("click",Js1.cargarGastosWeb);
 
 
-document.getElementById("cargar-gastos-api").addEventListener("click",Js1.cargarGastosApi);
+document.getElementById("cargar-gastos-api").addEventListener("click",Js1.cargarGastosApiClick);

@@ -263,7 +263,6 @@ async function BotonEnviarHandle(gasto){
       if(!response.ok)
         throw new Error('Error al obtener los datos')
 
-      console.log("estamos redis papi")
       const data = await response.json();
       await cargarGastosApi();
       console.log(data);
@@ -286,7 +285,6 @@ function obtenerGastoDesdeFormulario(formulario){
 
 
 function nuevoGastoWebFormulario(){
-    console.log("ENTRO EN nuevoGastoWebFormulario");
 
   let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
   let formulario = plantillaFormulario.querySelector("form");
@@ -370,11 +368,11 @@ function cargarGastosWeb(event) {
 
 
 
-async function cargarGastosApi(event){
-  event.preventDefault();
+async function cargarGastosApi() {
   const imputNombre = document.getElementById("nombre_usuario");
   const nombreUsuario = imputNombre.value;
 
+  //console.log('evento se llama' + event)
   const url = `https://gestion-presupuesto-api.onrender.com/api/${nombreUsuario}`;
   const options = {
     method: 'GET',
@@ -394,7 +392,11 @@ try{
 catch(error){
   console.log(error);
 }
+}
 
+async function cargarGastosApiClick(event){
+  event.preventDefault();
+  cargarGastosApi();
 }
 
 let botonAyadirGastoFormulario = document.getElementById("anyadirgasto-formulario");
@@ -419,5 +421,6 @@ export {
    guardarGastosWeb,
    cargarGastosWeb,
    cargarGastosApi,
-   BorrarGastoHandleApi
+   BorrarGastoHandleApi,
+   cargarGastosApiClick
 }
