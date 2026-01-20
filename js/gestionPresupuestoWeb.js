@@ -223,13 +223,13 @@ async function ActualizarGastoApi(formulario, gasto){
   const nombreUsuario = imputNombre.value;
   const url = `https://gestion-presupuesto-api.onrender.com/api/${nombreUsuario}/${gasto.gastoId}`;
 
-  let descripcion = formulario.querySelector('#descripcion');
-  let valor = formulario.querySelector('#valor');
-  let fecha = formulario.querySelector('#fecha');
-
-  descripcion.value = gasto.descripcion;
-  valor.value = gasto.valor;
-  fecha.value = new Date(gasto.fecha).toISOString().slice(0,10);
+  const gastoActualizado = {
+    gastoId: gasto.gastoId,
+    descripcion: formulario.querySelector('#descripcion').value,
+    valor: +formulario.querySelector('#valor').value,
+    fecha: formulario.querySelector('#fecha').value,
+    etiquetas: gasto.etiquetas
+  };
 
   const options = {
     method: 'PUT',
@@ -237,7 +237,7 @@ async function ActualizarGastoApi(formulario, gasto){
       "Content-Type": "application/json",
       "Accept": "application/json"      
     },
-    body: JSON.stringify(gasto) 
+    body: JSON.stringify(gastoActualizado) 
   };
   try{
     const response = await fetch(url,options);
@@ -252,7 +252,6 @@ async function ActualizarGastoApi(formulario, gasto){
     console.log(error);
 
   }
-
 
 }
 
