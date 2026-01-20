@@ -218,19 +218,53 @@ function BotonEviarHandle(){
   }
 }
 
-function ActualizarGastoApi(formulario, gasto){
+async function ActualizarGastoApi(formulario, gasto){
   const imputNombre = document.getElementById("nombre_usuario");
   const nombreUsuario = imputNombre.value;
+  const url = `https://gestion-presupuesto-api.onrender.com/api/${nombreUsuario}/${gasto.gastoId}`;
+
+  let descripcion = formulario.querySelector('#descripcion');
+  let valor = formulario.querySelector('#valor');
+  let fecha = formulario.querySelector('#fecha');
+
+  descripcion.value = gasto.descripcion;
+  valor.value = gasto.valor;
+  fecha.value = new Date(gasto.fecha).toISOString().slice(0,10);
+
+  const options = {
+    method: 'PUT',
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"      
+    },
+    body: JSON.stringify(gasto) 
+  };
+  try{
+    const response = await fetch(url,options);
+    if(!response.ok)
+      throw new Error('Error al obtener los datos')
+
+    const data = await response.json();
+    await cargarGastosApi();
+    console.log(data);
+  }
+  catch(error){
+    console.log(error);
+
+  }
+
+
 }
 
 function EditarHandleformulario(){
   this.handleEvent = function(event){ 
     const gasto = this.gasto;
 
-      console.log("AQUIII ")
       console.log(gasto)
       let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
-      let formulario = plantillaFormulario.querySelector("form");;
+      let formulario = plantillaFormulario.querySelector("form");
+      const btnEnviarApi = formulario.querySelector("button.gasto-enviar-api");
+
 
       let descripcion = formulario.querySelector('#descripcion');
       let valor = formulario.querySelector('#valor');
@@ -239,6 +273,10 @@ function EditarHandleformulario(){
       descripcion.value = gasto.descripcion;
       valor.value = gasto.valor;
       fecha.value = new Date(gasto.fecha).toISOString().slice(0,10);
+
+      btnEnviarApi.addEventListener("click", async function () {
+        await ActualizarGastoApi(formulario, gasto);
+      });
 
       const btnCancelar = formulario.querySelector("button.cancelar");
 
