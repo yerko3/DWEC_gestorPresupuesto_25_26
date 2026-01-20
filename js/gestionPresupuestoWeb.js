@@ -217,10 +217,18 @@ function BotonEviarHandle(){
     repintar();
   }
 }
+
+function ActualizarGastoApi(formulario, gasto){
+  const imputNombre = document.getElementById("nombre_usuario");
+  const nombreUsuario = imputNombre.value;
+}
+
 function EditarHandleformulario(){
   this.handleEvent = function(event){ 
     const gasto = this.gasto;
 
+      console.log("AQUIII ")
+      console.log(gasto)
       let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
       let formulario = plantillaFormulario.querySelector("form");;
 
