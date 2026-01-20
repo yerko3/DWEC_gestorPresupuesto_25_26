@@ -70,7 +70,6 @@ function mostrarGastoWeb(idElemento, gasto) {
     buttonBorrarApi.textContent = "Borrar (API)";
     let objBorrarGastoApi = new BorrarGastoHandleApi();
     objBorrarGastoApi.gasto = gasto;
-    console.log(objBorrarGastoApi)
     buttonBorrarApi.addEventListener("click", objBorrarGastoApi);
    divGasto.append(divDescripcion, divFecha, divValor, divEtiquetas,buttonEdicion,buttonBorrar,buttonBorrarApi,buttonEditarformualrio);
    contenedor.append(divGasto);
@@ -264,9 +263,10 @@ async function BotonEnviarHandle(gasto){
       if(!response.ok)
         throw new Error('Error al obtener los datos')
 
+      console.log("estamos redis papi")
       const data = await response.json();
       await cargarGastosApi();
-      console.log(data)
+      console.log(data);
     }
     catch(error){
       console.log(error);
@@ -286,6 +286,8 @@ function obtenerGastoDesdeFormulario(formulario){
 
 
 function nuevoGastoWebFormulario(){
+    console.log("ENTRO EN nuevoGastoWebFormulario");
+
   let plantillaFormulario = document.getElementById("formulario-template").content.cloneNode(true);
   let formulario = plantillaFormulario.querySelector("form");
   const btnCancelar = formulario.querySelector("button.cancelar");
@@ -299,9 +301,15 @@ function nuevoGastoWebFormulario(){
     botonDesactivado.disabled = false;
     repintar();
   })
+console.log(btnEnviarApi);
 
   const objCancelar = new BotonCancelarhandle();
   btnCancelar.addEventListener("click",objCancelar);
+
+  btnEnviarApi.addEventListener("click", async function () {
+    const gasto = obtenerGastoDesdeFormulario(formulario);
+    await BotonEnviarHandle(gasto);
+  });
   
   let base = document.getElementById("controlesprincipales");
   base.append(plantillaFormulario)
@@ -381,7 +389,7 @@ try{
   const data = await response.json();
   Js1.cargarGastos(data);
   repintar();
-  console.log(data)
+  console.log(data);
 }
 catch(error){
   console.log(error);
