@@ -247,17 +247,18 @@ function EditarHandleformulario(){
   }
 }
 
-function BotonEnviarHandle(){
-  this.handleEvent = async function(event){
-    event.preventDefault();
-
+async function BotonEnviarHandle(gasto){
     const imputNombre = document.getElementById("nombre_usuario");
     const nombreUsuario = imputNombre.value;
     const url = `https://gestion-presupuesto-api.onrender.com/api/${nombreUsuario}`;
     const options = {
       method: 'POST',
       headers: {
-        'Accept': 'application/json'
+        "Content-Type": "application/json",
+        "Accept": "application/json"      
+      },
+      body :{
+        'gasto' : gasto
       }
     };
     try{
@@ -272,7 +273,6 @@ function BotonEnviarHandle(){
       console.log(error);
 
     }
-  }
 }
 
 function nuevoGastoWebFormulario(){
@@ -296,8 +296,7 @@ function nuevoGastoWebFormulario(){
     repintar();
   })
 
-  const objEnviar = new BotonEnviarHandle();
-  btnEnviarApi.addEventListener("click",objEnviar);
+  btnEnviarApi.addEventListener("click",BotonEnviarHandle);
 
   const objCancelar = new BotonCancelarhandle();
   btnCancelar.addEventListener("click",objCancelar);
