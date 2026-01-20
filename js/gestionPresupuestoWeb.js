@@ -257,14 +257,13 @@ async function BotonEnviarHandle(gasto){
         "Content-Type": "application/json",
         "Accept": "application/json"      
       },
-      body :{
-        'gasto' : gasto
-      }
+      body: JSON.stringify(gasto) 
     };
     try{
       const response = await fetch(url,options);
       if(!response.ok)
         throw new Error('Error al obtener los datos')
+
       const data = await response.json();
       await cargarGastosApi();
       console.log(data)
@@ -292,11 +291,10 @@ function nuevoGastoWebFormulario(){
     let ArrayEtiquetas = etiquetas.split(',');
     let gasto = new Js1.CrearGasto(descripcion,valor,fecha,...ArrayEtiquetas);
     Js1.anyadirGasto(gasto);
+    BotonEnviarHandle(gasto);
     botonDesactivado.disabled = false;
     repintar();
   })
-
-  btnEnviarApi.addEventListener("click",BotonEnviarHandle);
 
   const objCancelar = new BotonCancelarhandle();
   btnCancelar.addEventListener("click",objCancelar);
