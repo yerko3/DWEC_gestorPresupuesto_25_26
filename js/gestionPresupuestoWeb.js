@@ -294,15 +294,8 @@ function nuevoGastoWebFormulario(){
   botonDesactivado.disabled = true;
   formulario.addEventListener("submit", function(event){
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const descripcion = data.get("descripcion");
-    const valor = +data.get("valor");
-    const fecha = data.get("fecha");
-    const etiquetas = data.get("etiquetas");
-    let ArrayEtiquetas = etiquetas.split(',');
-    let gasto = new Js1.CrearGasto(descripcion,valor,fecha,...ArrayEtiquetas);
+    const gasto = obtenerGastoDesdeFormulario(formulario);
     Js1.anyadirGasto(gasto);
-    BotonEnviarHandle(gasto);
     botonDesactivado.disabled = false;
     repintar();
   })
