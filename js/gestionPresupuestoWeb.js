@@ -221,6 +221,17 @@ function BotonEviarHandle(){
 async function ActualizarGastoApi(formulario, gasto){
   const imputNombre = document.getElementById("nombre_usuario");
   const nombreUsuario = imputNombre.value;
+  if(!gasto.gastoId){
+    const gastoActualizado = {
+      Id : gasto.id,
+      descripcion: formulario.querySelector('#descripcion').value,
+      valor: +formulario.querySelector('#valor').value,
+      fecha: formulario.querySelector('#fecha').value,
+      etiquetas: gasto.etiquetas
+    };
+      await BotonEnviarHandle(gastoActualizado);
+      repintar();
+  }
   const url = `https://gestion-presupuesto-api.onrender.com/api/${nombreUsuario}/${gasto.gastoId}`;
 
   const gastoActualizado = {
@@ -423,19 +434,19 @@ async function cargarGastosApi() {
     method: 'GET',
     headers: {
       'Accept': 'application/json'
+    }
+  };
+  try{
+    const response = await fetch(url,options);
+    if(!response.ok)
+      throw new Error('Error al obtener los datos')
+    const data = await response.json();
+    Js1.cargarGastos(data);
+    repintar();
+    console.log(data);
   }
-};
-try{
-  const response = await fetch(url,options);
-  if(!response.ok)
-    throw new Error('Error al obtener los datos')
-  const data = await response.json();
-  Js1.cargarGastos(data);
-  repintar();
-  console.log(data);
-}
-catch(error){
-  console.log(error);
+  catch(error){
+    console.log(error);
 }
 }
 

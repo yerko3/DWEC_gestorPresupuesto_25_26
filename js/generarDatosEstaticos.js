@@ -41,3 +41,21 @@ document.getElementById("cargar-gastos").addEventListener("click",Js1.cargarGast
 
 
 document.getElementById("cargar-gastos-api").addEventListener("click",Js1.cargarGastosApiClick);
+
+const h1 = document.createElement("h1");
+const h1_2 = document.createElement("h1");
+const h1_3 = document.createElement("h1");
+const h1_4 = document.createElement("h1");
+
+
+h1.textContent = "Gastos filtrados 1";
+h1_2.textContent = "Gastos filtrados 2";
+h1_3.textContent = "Gastos filtrados 3";
+h1_4.textContent = "Gastos filtrados 4"
+
+document.getElementById("listado-gastos-filtrado-1").append(h1);
+document.getElementById("listado-gastos-filtrado-2").append(h1_2);
+document.getElementById("listado-gastos-filtrado-3").append(h1_3);
+document.getElementById("listado-gastos-filtrado-4").append(h1_4);
+
+
